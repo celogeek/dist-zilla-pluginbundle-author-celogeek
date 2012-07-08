@@ -14,3 +14,5 @@ MYMETA.yml
 nytprof.out
 pm_to_blib
 Dist-Zilla-PluginBundle-Author-Celogeek-*
+xt/.perlcriticrc
+xt/.perltidyrc

@@ -39,6 +39,8 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   config_plugin = @Celogeek
   [Run::BeforeRelease]
   run = cp %d%pREADME.mkdn .
+  [PerlTidy]
+  perltidyrc = xt/.perltidyrc
 
 Here a simple dist.ini :
 
@@ -66,6 +68,22 @@ Here my Changes file :
   {{$NEXT}}
     My changes log
 
+Here my .gitignore :
+
+    xt/.perltidyrc
+    xt/.perlcriticrc
+    MyTest-*
+    *.swp
+    *.bak
+    *.tdy
+    *.old
+    .build
+    .includepath
+    .project
+    .DS_Store
+
+You need to create and commit at least the .gitignore Changes and dist.ini and your lib first. Then any release will be automatic.
+
 When you will release, by invoking 'dzil release', it will automatically:
 
 =over 2
@@ -89,8 +107,6 @@ When you will release, by invoking 'dzil release', it will automatically:
 
 use strict;
 use warnings;
-use Carp;
-use Data::Dumper;
 
 # VERSION
 
@@ -98,12 +114,48 @@ use Moose;
 use Class::MOP;
 with 'Dist::Zilla::Role::PluginBundle::Easy', 'Dist::Zilla::Role::PluginBundle::PluginRemover';
 
+sub before_build {
+    my $self = shift;
+    unless (-e 'xt/.perltidyrc') {
+        unless (-d 'xt') {
+            mkdir('xt');
+        }
+        if (open my $f, '>', 'xt/.perltidyrc') {
+        print $f <<EOF
+#Perl Best Practice Conf
+-l=78
+-i=4
+-ci=4
+#-st
+-se
+-vt=2
+-cti=0
+-pt=1
+-bt=1
+-sbt=1
+-bbt=1
+-nsfs
+-nolq
+-wbb="% + - * / x != == >= <= =~  !~ < > | & >= < = **= += *= &= <<= &&= -= /= |= >>= ||= .= %= ^= x="
+EOF
+            ;
+            close $f;
+        }
+    }
+}
+
 sub configure {
     my $self = shift;
 
+    #init some file like perltidy and perlcritic rc files
+    $self->before_build;
+
+    #git files
+    my @git_files = qw/Changes dist.ini README.mkdn/;
+
     $self->add_plugins(['Git::NextVersion' => { first_version => '0.01' }]);
     $self->add_plugins('NextRelease');
-    $self->add_bundle('Git' => {'allow_dirty' => [qw/Changes dist.ini README.mkdn/], 'add_files_in' => [qw/Changes dist.ini README.mkdn/]});
+    $self->add_bundle('Git' => {'allow_dirty' => \@git_files, 'add_files_in' => \@git_files});
     $self->add_bundle('Filter', {bundle => '@Basic', remove => ['MakeMaker']});
     $self->add_plugins(
         'ModuleBuild',
@@ -121,7 +173,8 @@ sub configure {
         [ 'MetaResourcesFromGit' => { 'bugtracker.web' => 'https://github.com/%a/%r/issues'} ],
         'MetaConfig',
         ['PodWeaver' => { 'config_plugin' => '@Celogeek' } ],
-        ['Run::BeforeRelease' => { run => 'cp %d%pREADME.mkdn .'}]
+        ['Run::BeforeRelease' => { run => 'cp %d%pREADME.mkdn .'}],
+        ['PerlTidy' => { 'perltidyrc' => 'xt/.perltidyrc' }],
     );
 
 }
