@@ -4,20 +4,28 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.2
+version 0.3
 
 # OVERVIEW
 
 This is the bundle of Celogeek, and is equivalent to create this dist.ini :
 
+    [Git::NextVersion]
+    first_version = 0.01
+    [NextRelease]
+    [@Git]
+    allow_dirty = Changes
+    allow_dirty = dist.ini
+    allow_dirty = README.mkdn
+    add_files_in = Changes
+    add_files_in = dist.ini
+    add_files_in = README.mkdn
     [@Filter]
     -bundle = @Basic
     -remove = MakeMaker
-    [@Git]
     [ModuleBuild]
     [ReportVersions]
     [OurPkgVersion]
-    [NextRelease]
     [Prepender]
     copyright = 1
     [AutoPrereqs]
@@ -33,6 +41,45 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
     [MetaConfig]
     [PodWeaver]
     config_plugin = @Celogeek
+    [Run::BeforeRelease]
+    run = cp %d%pREADME.mkdn .
+
+Here a simple dist.ini :
+
+    name = MyTest
+    license = Perl_5
+    copyright_holder = celogeek <me@celogeek.com>
+    copyright_year = 2011
+    
+
+    [@Author::Celogeek]
+
+And it support remove, so you can use it for your apps deploy :
+
+    name = MyTest
+    license = Perl_5
+    copyright_holder = celogeek <me@celogeek.com>
+    copyright_year = 2011
+    
+
+    [@Author::Celogeek]
+    -remove = UploadToCPAN
+    [Run::Release]
+    run = scripts/deploy.sh %s
+
+Here my Changes file :
+
+    {{$NEXT}}
+      My changes log
+
+When you will release, by invoking 'dzil release', it will automatically:
+
+- increment the version number (you dont add it in your program)
+- collect change found in your Changes after the NEXT
+- collect the markdown for github
+- commit Changes, dist.ini and README.mkdn with a simple message (version and changes)
+- add a tag
+- push origin
 
 # BUGS
 

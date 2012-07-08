@@ -1,12 +1,17 @@
 {{$NEXT}}
 
+0.3       2012-07-08 18:41:05 Europe/Paris
+
+    Improve Bundle
+    Auto generate version
+    Auto add README.mkdn
+    Improve doc
+
 0.2       2012-07-08 14:55:59 Europe/Paris
-===
 
-Fix dist.ini deps
-Add OVERVIEW for the bundle
+    Fix dist.ini deps
+    Add OVERVIEW for the bundle
 
-0.1 - 2012-06-28 00:22
-===
+0.1       2012-06-28 00:22:00 Europe/Paris
 
-First release
+    First release
