@@ -2,6 +2,36 @@ package Dist::Zilla::PluginBundle::Author::Celogeek;
 
 # ABSTRACT: Dist::Zilla like Celogeek
 
+=head1 OVERVIEW
+
+This is the bundle of Celogeek, and is equivalent to create this dist.ini :
+
+  [@Filter]
+  -bundle = @Basic
+  -remove = MakeMaker
+  [@Git]
+  [ModuleBuild]
+  [ReportVersions]
+  [OurPkgVersion]
+  [NextRelease]
+  [Prepender]
+  copyright = 1
+  [AutoPrereqs]
+  [Prereqs]
+  [MinimumPerl]
+  [Test::Compile]
+  [CheckChangeLog]
+  [Test::UnusedVars]
+  [PruneFiles]
+  [ReadmeMarkdownFromPod]
+  [MetaResourcesFromGit]
+  bugtracker.web = https://github.com/%a/%r/issues
+  [MetaConfig]
+  [PodWeaver]
+  config_plugin = @Celogeek
+
+=cut
+
 use strict;
 use warnings;
 use Carp;
