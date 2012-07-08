@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+0.4       2012-07-09 00:32:07 Europe/Paris
+
+    add perltidy plugin and default config
+
 0.3       2012-07-08 18:41:05 Europe/Paris
 
     Improve Bundle

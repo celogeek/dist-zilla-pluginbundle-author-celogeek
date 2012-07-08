@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.3
+version 0.4
 
 # OVERVIEW
 
@@ -43,6 +43,8 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
     config_plugin = @Celogeek
     [Run::BeforeRelease]
     run = cp %d%pREADME.mkdn .
+    [PerlTidy]
+    perltidyrc = xt/.perltidyrc
 
 Here a simple dist.ini :
 
@@ -71,6 +73,22 @@ Here my Changes file :
 
     {{$NEXT}}
       My changes log
+
+Here my .gitignore :
+
+    xt/.perltidyrc
+    xt/.perlcriticrc
+    MyTest-*
+    *.swp
+    *.bak
+    *.tdy
+    *.old
+    .build
+    .includepath
+    .project
+    .DS_Store
+
+You need to create and commit at least the .gitignore Changes and dist.ini and your lib first. Then any release will be automatic.
 
 When you will release, by invoking 'dzil release', it will automatically:
 
