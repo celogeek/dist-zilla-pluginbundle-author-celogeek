@@ -4,7 +4,35 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.1
+version 0.2
+
+# OVERVIEW
+
+This is the bundle of Celogeek, and is equivalent to create this dist.ini :
+
+    [@Filter]
+    -bundle = @Basic
+    -remove = MakeMaker
+    [@Git]
+    [ModuleBuild]
+    [ReportVersions]
+    [OurPkgVersion]
+    [NextRelease]
+    [Prepender]
+    copyright = 1
+    [AutoPrereqs]
+    [Prereqs]
+    [MinimumPerl]
+    [Test::Compile]
+    [CheckChangeLog]
+    [Test::UnusedVars]
+    [PruneFiles]
+    [ReadmeMarkdownFromPod]
+    [MetaResourcesFromGit]
+    bugtracker.web = https://github.com/%a/%r/issues
+    [MetaConfig]
+    [PodWeaver]
+    config_plugin = @Celogeek
 
 # BUGS
 
