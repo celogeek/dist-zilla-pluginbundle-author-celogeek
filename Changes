@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+    add perlcritic
+
 0.4       2012-07-09 00:32:07 Europe/Paris
 
     add perltidy plugin and default config

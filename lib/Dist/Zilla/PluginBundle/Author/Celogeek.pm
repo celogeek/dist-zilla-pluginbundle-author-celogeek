@@ -40,7 +40,9 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   [Run::BeforeRelease]
   run = cp %d%pREADME.mkdn .
   [PerlTidy]
-  perltidyrc = xt/.perltidyrc
+  perltidyrc = xt/perltidy.rc
+  [Test::Perl::Critic]
+  critic_config = xt/perlcritic.rc
 
 Here a simple dist.ini :
 
@@ -70,8 +72,8 @@ Here my Changes file :
 
 Here my .gitignore :
 
-    xt/.perltidyrc
-    xt/.perlcriticrc
+    xt/perltidy.rc
+    xt/perlcritic.rc
     MyTest-*
     *.swp
     *.bak
@@ -116,11 +118,11 @@ with 'Dist::Zilla::Role::PluginBundle::Easy', 'Dist::Zilla::Role::PluginBundle::
 
 sub before_build {
     my $self = shift;
-    unless (-e 'xt/.perltidyrc') {
-        unless (-d 'xt') {
-            mkdir('xt');
-        }
-        if (open my $f, '>', 'xt/.perltidyrc') {
+    unless (-d 'xt') {
+        mkdir('xt');
+    }
+    unless (-e 'xt/perltidy.rc') {
+        if (open my $f, '>', 'xt/perltidy.rc') {
         print $f <<EOF
 #Perl Best Practice Conf
 -l=78
@@ -142,6 +144,21 @@ EOF
             close $f;
         }
     }
+    unless (-e 'xt/perlcritic.rc') {
+        if (open my $f, '>', 'xt/perlcritic.rc') {
+            print $f <<EOF
+severity = 3
+theme = (pbp || security) && bugs
+criticism-fatal = 1
+color = 1
+
+[Subroutines::ProtectPrivateSubs]
+allow = Encode::_utf8_on
+EOF
+            ;
+        }
+    }
+    return;
 }
 
 sub configure {
@@ -174,9 +191,11 @@ sub configure {
         'MetaConfig',
         ['PodWeaver' => { 'config_plugin' => '@Celogeek' } ],
         ['Run::BeforeRelease' => { run => 'cp %d%pREADME.mkdn .'}],
-        ['PerlTidy' => { 'perltidyrc' => 'xt/.perltidyrc' }],
+        ['PerlTidy' => { 'perltidyrc' => 'xt/perltidy.rc' }],
+        ['Test::Perl::Critic' => {'critic_config' => 'xt/perlcritic.rc'}],
     );
 
+    return;
 }
 
 1;
