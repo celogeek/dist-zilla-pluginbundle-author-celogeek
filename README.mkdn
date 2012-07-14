@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.4
+version 0.5
 
 # OVERVIEW
 
@@ -44,7 +44,9 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
     [Run::BeforeRelease]
     run = cp %d%pREADME.mkdn .
     [PerlTidy]
-    perltidyrc = xt/.perltidyrc
+    perltidyrc = xt/perltidy.rc
+    [Test::Perl::Critic]
+    critic_config = xt/perlcritic.rc
 
 Here a simple dist.ini :
 
@@ -76,8 +78,8 @@ Here my Changes file :
 
 Here my .gitignore :
 
-    xt/.perltidyrc
-    xt/.perlcriticrc
+    xt/perltidy.rc
+    xt/perlcritic.rc
     MyTest-*
     *.swp
     *.bak
