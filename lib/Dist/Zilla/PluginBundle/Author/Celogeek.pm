@@ -30,6 +30,8 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   [Test::Compile]
   [CheckChangeLog]
   [Test::UnusedVars]
+  [NoTabsTests]
+  [EOLTests]
   [PruneFiles]
   [ReadmeMarkdownFromPod]
   [MetaResourcesFromGit]
@@ -50,7 +52,7 @@ Here a simple dist.ini :
   license = Perl_5
   copyright_holder = celogeek <me@celogeek.com>
   copyright_year = 2011
-  
+
   [@Author::Celogeek]
 
 And it support remove, so you can use it for your apps deploy :
@@ -59,7 +61,7 @@ And it support remove, so you can use it for your apps deploy :
   license = Perl_5
   copyright_holder = celogeek <me@celogeek.com>
   copyright_year = 2011
-  
+
   [@Author::Celogeek]
   -remove = UploadToCPAN
   [Run::Release]
@@ -193,6 +195,8 @@ sub configure {
         ['Run::BeforeRelease' => { run => 'cp %d%pREADME.mkdn .'}],
         ['PerlTidy' => { 'perltidyrc' => 'xt/perltidy.rc' }],
         ['Test::Perl::Critic' => {'critic_config' => 'xt/perlcritic.rc'}],
+        ['NoTabsTests'],
+        ['EOLTests'],
     );
 
     return;
