@@ -52,7 +52,7 @@ Here a simple dist.ini :
   license = Perl_5
   copyright_holder = celogeek <me@celogeek.com>
   copyright_year = 2011
-  
+
   [@Author::Celogeek]
 
 And it support remove, so you can use it for your apps deploy :
@@ -61,7 +61,7 @@ And it support remove, so you can use it for your apps deploy :
   license = Perl_5
   copyright_holder = celogeek <me@celogeek.com>
   copyright_year = 2011
-  
+
   [@Author::Celogeek]
   -remove = UploadToCPAN
   [Run::Release]
