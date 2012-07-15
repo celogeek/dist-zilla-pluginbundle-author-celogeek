@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+   add EOL and NoTabs tests
+
 0.5       2012-07-15 00:41:16 Europe/Paris
 
     add perlcritic

@@ -30,6 +30,8 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   [Test::Compile]
   [CheckChangeLog]
   [Test::UnusedVars]
+  [NoTabsTests]
+  [EOLTests]
   [PruneFiles]
   [ReadmeMarkdownFromPod]
   [MetaResourcesFromGit]
@@ -193,6 +195,8 @@ sub configure {
         ['Run::BeforeRelease' => { run => 'cp %d%pREADME.mkdn .'}],
         ['PerlTidy' => { 'perltidyrc' => 'xt/perltidy.rc' }],
         ['Test::Perl::Critic' => {'critic_config' => 'xt/perlcritic.rc'}],
+        ['NoTabsTests'],
+        ['EOLTests'],
     );
 
     return;
