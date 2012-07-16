@@ -45,6 +45,11 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   [Test::Perl::Critic]
   critic_config = xt/perlcritic.rc
 
+It also install :
+
+  Devel::Cover
+  Dist::Zilla::App::Command::cover
+
 Here a simple dist.ini :
 
   name = MyTest
