@@ -41,6 +41,11 @@ use namespace::autoclean;
 use Pod::Weaver::Config::Assembler;
 sub _exp { my $package = shift; return Pod::Weaver::Config::Assembler->expand_package($package) }
 
+=method mvp_bundle_config
+
+Config method for Pod::Weaver
+
+=cut
 sub mvp_bundle_config {
   return (
     [ '@Default/CorePrep',  _exp('@CorePrep'), {} ],

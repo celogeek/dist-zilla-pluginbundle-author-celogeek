@@ -30,6 +30,7 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   [Test::Compile]
   [CheckChangeLog]
   [Test::UnusedVars]
+  [PodCoverageTests]
   [PruneFiles]
   [ReadmeMarkdownFromPod]
   [MetaResourcesFromGit]
@@ -146,6 +147,11 @@ allow-unsafe    = 1
 EOF
 ;
 
+=method before_build
+
+Setup default config file if your project lack of them
+
+=cut
 sub before_build {
     my $self = shift;
     unless (-d 'xt') {
@@ -166,6 +172,11 @@ sub before_build {
     return;
 }
 
+=method configure
+
+Configuration of Dist::Zilla::PluginBundle::Easy
+
+=cut
 sub configure {
     my $self = shift;
 
@@ -190,6 +201,7 @@ sub configure {
         'Test::Compile',
         'CheckChangeLog',
         'Test::UnusedVars',
+        'PodCoverageTests',
         'PruneFiles',
         'ReadmeMarkdownFromPod',
         [ 'MetaResourcesFromGit' => { 'bugtracker.web' => 'https://github.com/%a/%r/issues'} ],
