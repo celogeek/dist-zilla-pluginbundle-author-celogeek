@@ -116,14 +116,8 @@ use Moose;
 use Class::MOP;
 with 'Dist::Zilla::Role::PluginBundle::Easy', 'Dist::Zilla::Role::PluginBundle::PluginRemover';
 
-sub before_build {
-    my $self = shift;
-    unless (-d 'xt') {
-        mkdir('xt');
-    }
-    unless (-e 'xt/perltidy.rc') {
-        if (open my $f, '>', 'xt/perltidy.rc') {
-        print $f <<EOF
+
+my $PERLTIDY_SAMPLE = <<'EOF'
 #Perl Best Practice Conf
 -l=78
 -i=4
@@ -140,22 +134,33 @@ sub before_build {
 -nolq
 -wbb="% + - * / x != == >= <= =~  !~ < > | & >= < = **= += *= &= <<= &&= -= /= |= >>= ||= .= %= ^= x="
 EOF
-            ;
+;
+my $PERLCRITIC_SAMPLE = <<'EOF'
+severity        = 3
+verbose         = 6
+top             = 50
+theme           = pbp || core || bugs || security || maintenance
+criticism-fatal = 1
+color           = 1
+allow-unsafe    = 1
+EOF
+;
+
+sub before_build {
+    my $self = shift;
+    unless (-d 'xt') {
+        mkdir('xt');
+    }
+    unless (-e 'xt/perltidy.rc') {
+        if (open my $f, '>', 'xt/perltidy.rc') {
+            print $f $PERLTIDY_SAMPLE;
             close $f;
         }
     }
     unless (-e 'xt/perlcritic.rc') {
         if (open my $f, '>', 'xt/perlcritic.rc') {
-            print $f <<EOF
-severity = 3
-theme = (pbp || security) && bugs
-criticism-fatal = 1
-color = 1
-
-[Subroutines::ProtectPrivateSubs]
-allow = Encode::_utf8_on
-EOF
-            ;
+            print $f $PERLCRITIC_SAMPLE;
+            close $f;
         }
     }
     return;

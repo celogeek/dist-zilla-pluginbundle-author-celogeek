@@ -39,7 +39,7 @@ use warnings;
 use namespace::autoclean;
 
 use Pod::Weaver::Config::Assembler;
-sub _exp { return Pod::Weaver::Config::Assembler->expand_package($_[0]) }
+sub _exp { my $package = shift; return Pod::Weaver::Config::Assembler->expand_package($package) }
 
 sub mvp_bundle_config {
   return (
