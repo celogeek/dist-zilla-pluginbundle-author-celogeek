@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.7       2012-07-16 16:37:27 Europe/Paris
+
     Add Devel::Cover and Dist::Zilla cover app
     Add PodCoverageTests
 
