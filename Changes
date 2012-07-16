@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+    Add Devel::Cover and Dist::Zilla cover app
+    Add PodCoverageTests
+
 0.6       2012-07-16 14:50:31 Europe/Paris
 
     use new default perlcritic
