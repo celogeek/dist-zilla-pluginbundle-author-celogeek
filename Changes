@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+    Add IO::All 0.45 to avoid warning during test
+
 0.7       2012-07-16 16:37:27 Europe/Paris
 
     Add Devel::Cover and Dist::Zilla cover app
