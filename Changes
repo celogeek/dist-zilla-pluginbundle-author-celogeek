@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.8       2012-07-20 11:50:05 Europe/Paris
+
     Add IO::All 0.45 to avoid warning during test
 
 0.7       2012-07-16 16:37:27 Europe/Paris

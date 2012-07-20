@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.7
+version 0.8
 
 # OVERVIEW
 
