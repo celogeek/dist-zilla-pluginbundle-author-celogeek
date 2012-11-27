@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.8
+version 0.9
 
 # OVERVIEW
 
@@ -120,7 +120,8 @@ Configuration of Dist::Zilla::PluginBundle::Easy
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
-https://github.com/celogeek/dist-zilla-pluginbundle-author-celogeek/issues
+http://tasks.celogeek.com/projects/perl-modules-dist-zilla-pluginbundle-aut
+hor-celogeek
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
