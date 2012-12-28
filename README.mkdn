@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::Celogeek - Dist::Zilla like Celogeek
 
 # VERSION
 
-version 0.9
+version 1.0
 
 # OVERVIEW
 
@@ -37,6 +37,7 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
     [PodCoverageTests]
     [PruneFiles]
     [ReadmeMarkdownFromPod]
+    [MetaJSON]
     [MetaResourcesFromGit]
     bugtracker.web = https://github.com/%a/%r/issues
     [MetaConfig]
