@@ -33,6 +33,7 @@ This is the bundle of Celogeek, and is equivalent to create this dist.ini :
   [PodCoverageTests]
   [PruneFiles]
   [ReadmeMarkdownFromPod]
+  [MetaJSON]
   [MetaResourcesFromGit]
   bugtracker.web = https://github.com/%a/%r/issues
   [MetaConfig]
@@ -209,6 +210,7 @@ sub configure {
         'PodCoverageTests',
         'PruneFiles',
         'ReadmeMarkdownFromPod',
+        'MetaJSON',
         [ 'MetaResourcesFromGit' => { 'bugtracker.web' => 'https://github.com/%a/%r/issues'} ],
         'MetaConfig',
         ['PodWeaver' => { 'config_plugin' => '@Celogeek' } ],
